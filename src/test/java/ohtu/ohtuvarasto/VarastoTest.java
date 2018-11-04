@@ -126,5 +126,7 @@ public class VarastoTest {
         String varastoString = varasto.toString();
         assertTrue(!varastoString.isEmpty());
     }
+    
+    // random muutos
 
 }
