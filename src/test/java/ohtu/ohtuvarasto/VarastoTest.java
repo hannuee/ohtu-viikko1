@@ -64,5 +64,67 @@ public class VarastoTest {
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
+    
+    
+    @Test
+    public void eiSaaOttaaLiikaa() {
+        varasto.lisaaVarastoon(10);
+        varasto.otaVarastosta(11);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void eiSaaLaittaaLiikaa() {
+        varasto.lisaaVarastoon(11);
+        assertEquals(10, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void eiKaaduJosOtetaanNegatiivinen(){
+        varasto.otaVarastosta(-1);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void eiKaaduJosLaitetaanNegatiivinen(){
+        varasto.lisaaVarastoon(-1);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriEiSalliNegatiivistaTilavuutta(){
+        Varasto toinenVarasto = new Varasto(-10);
+        assertEquals(0, toinenVarasto.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void alkuSaldoKonstruktoriEiSalliNegatiivistaTilavuutta(){
+        Varasto toinenVarasto = new Varasto(-10, -10);
+        assertEquals(0, toinenVarasto.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void alkuSaldoKonstruktoriEiSalliNegatiivistaAlkuSaldoa(){
+        Varasto toinenVarasto = new Varasto(10, -10);
+        assertEquals(0, toinenVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void alkuSaldoKonstruktoriLisaaOikeinAlkuSaldoa(){
+        Varasto toinenVarasto = new Varasto(10, 8);
+        assertEquals(8, toinenVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void alkuSaldoKonstruktoriLisaaOikeinAlkuSaldoaKunAlkuSaldoaOnLiikaa(){
+        Varasto toinenVarasto = new Varasto(10, 11);
+        assertEquals(10, toinenVarasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void varastonToStringToimii(){
+        String varastoString = varasto.toString();
+        assertTrue(!varastoString.isEmpty());
+    }
 
 }
