@@ -124,7 +124,7 @@ public class VarastoTest {
     @Test
     public void varastonToStringToimii(){
         String varastoString = varasto.toString();
-        assertTrue(!varastoString.isEmpty());
+        assertTrue(varastoString.isEmpty());
     }
 
 }
