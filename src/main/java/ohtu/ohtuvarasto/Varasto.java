@@ -78,6 +78,20 @@ public class Varasto {
 
     // --- Merkkijonoesitys Varasto-oliolle: ----
     public String toString() {
-        return ("saldo = " + saldo + ", vielä tilaa " + paljonkoMahtuu());
+        if(true){
+            if(true){
+                if(true){
+                    System.out.println("testi");
+                }
+            }
+        }
+        
+        for(int i = 0; i < 2; i++){
+            for(int x = 0; x < 2; x++){
+                System.out.println("testi2");
+            }
+        }
+        
+         return ("saldo = " + saldo + ", vielä tilaa " + paljonkoMahtuu());
     }
 }
